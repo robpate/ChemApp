@@ -10,18 +10,24 @@ namespace ChemicalEfficiency
     internal class Program
     {
         // Global Variables
-        static string mostEfficient = "";
-        static string leastEfficient = "";
+        static float mostEfficient = 0;
+        static string bestChemName = "";
+
+        static float leastEfficient = 0;
+        static string worstChemName = "";
+
+        static int timesRan = 0;
         // Lists
 
         static void OneChemical()
         {
             //Randomly generate number of live germs in a live sample
             Random random = new Random();
-            
-            int germNum = random.Next(20000, 40000);
+            int germNum = random.Next(500, 1000);
+
             //Display value generated
             Console.WriteLine($"Number of germs in sample is {germNum}");
+
             //Select chemical to add to the sample
             Console.WriteLine("1: Cyanide\n" +
                 "2: Vinegar\n" +
@@ -51,24 +57,70 @@ namespace ChemicalEfficiency
             {
                 chemical = "Chlorine";
             }
-
-            //Wait 10 seconds
-            Thread.Sleep(10000);
-            //Generate new value after chemical is tested
-            int newGermNum = random.Next(10000, 25000);
-            int numRemoved = germNum - newGermNum;
-            //Display new value
-            Console.WriteLine($"After testing {chemical} against the sample {numRemoved} germs were killed leaving {newGermNum} remaining. ");
-            //Determine efficiency of chemical
-            float efficiency = (float)numRemoved / 10000;
-            Console.WriteLine($"efficieny is {efficiency}");
             
-            //Check if chemical is more or less efficient than the previous most and least efficient
+            
+
+            
+            //Wait 10 seconds
+            Console.WriteLine("Test Commencing...\nPlease wait 10 seconds");
+            Thread.Sleep(10000);
+
+
+
+            //Generate average number
+
+            float avgEfficiency = 0;
+            for (int i = 0; i <= 5; i++)
+            {
+                int sampleNum = i + 1;
+                //Generate new value after chemical is tested
+                int newGermNum = random.Next(0, 499);
+                int numRemoved = germNum - newGermNum;
+
+                //Display new value
+                Console.WriteLine($"Sample {sampleNum}: {numRemoved} germs were killed leaving {newGermNum} remaining.\n");
+
+                //Determine efficiency of chemical
+                float efficiency = (float)numRemoved / 10;
+                avgEfficiency += efficiency;
+                
+            }
+          
+            avgEfficiency = avgEfficiency / 5;
+            if (timesRan == 0)
+            {
+                leastEfficient = avgEfficiency;
+            }
+            timesRan++;
+            Console.WriteLine($"effiency of {chemical} is{avgEfficiency}");
+
+            Console.WriteLine(leastEfficient);
+
+            //check if chemical is more or less effiecient than previous most or least
+
+            if (avgEfficiency < leastEfficient)
+            {
+                leastEfficient = avgEfficiency;
+            }
+
+            if (avgEfficiency > mostEfficient)
+            {
+                mostEfficient = avgEfficiency;
+            }
+            
+            
+
         }
         static void Main(string[] args)
         {
-            OneChemical();
-            Console.ReadLine();
+            string flag = "";
+            while (!flag.Equals("stop"))
+            {
+                OneChemical();
+                Console.WriteLine("type 'stop' to end and press <Enter> to continue");
+                flag = Console.ReadLine();
+
+            }
         }
     }
 }
