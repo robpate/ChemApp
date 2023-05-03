@@ -56,6 +56,7 @@ namespace ChemicalApp
 
 
 
+
             //Do waiting animation
             for (int i = 0; i < 5; i++)
             {
@@ -168,25 +169,38 @@ namespace ChemicalApp
             
             while (true)
             {
-                Console.WriteLine("type 'stop' to end and press <Enter> to continue");
-                string userInput = Console.ReadLine();
-                userInput = userInput.ToLower();
-                if (userInput.Equals("") | userInput.Equals("stop"))
+                Console.WriteLine("\ntype 'stop' to end and press <Enter> to continue");
+                string userInput1 = Console.ReadLine();
+                userInput1 = userInput1.ToLower();
+                if (userInput1.Equals("") | userInput1.Equals("stop"))
                 {
 
-                    return userInput;
+                    return userInput1;
 
 
                 }
-                Console.WriteLine("Please type 'stop' or press <Enter> to continue");
-                Console.WriteLine(userInput);
+                Console.WriteLine("\nPlease type 'stop' or press <Enter> to continue");
+                Console.WriteLine(userInput1);
             }
             
         }
         static void Main(string[] args)
         {
-            Console.WriteLine("------Welcome to ChemicalApp------\n" +
-                "ChemicalApp is a program that allows you to test different cleaning chemicals and determine which of them is the most and least efficient at killing germs.");
+            Console.WriteLine(  @" /$$$$$$  / $$                                /$$$$$$" + "\n" +
+                                @"/ $$__  $$| $$                               /$$__  $$" + "\n" +
+                                @"| $$  \__/| $$$$$$$   /$$$$$$  /$$$$$$/$$$$ | $$  \ $$  /$$$$$$   /$$$$$$ " + "\n" +
+                                @"| $$      | $$__  $$ /$$__  $$| $$_  $$_  $$| $$$$$$$$ /$$__  $$ /$$__  $$" + "\n" +
+                                @"| $$      | $$  \ $$| $$$$$$$$| $$ \ $$ \ $$| $$__  $$| $$  \ $$| $$  \ $$" + "\n" +
+                                @"| $$    $$| $$  | $$| $$_____/| $$ | $$ | $$| $$  | $$| $$  | $$| $$  | $$" + "\n" +
+                                @"|  $$$$$$/| $$  | $$|  $$$$$$$| $$ | $$ | $$| $$  | $$| $$$$$$$/| $$$$$$$/" + "\n" +
+                                @" \______/ |__/  |__/ \_______/|__/ |__/ |__/|__/  |__/| $$____/ | $$____/" + "\n" +
+                                @"                                                      | $$      | $$" + "\n" +
+                                @"                                                      | $$      | $$" + "\n" +
+                                @"                                                      |__/      |__/" + "\n");
+            Console.WriteLine("---------------------------------------------------------------------------------------");
+            Console.WriteLine("ChemApp is a program that allows you to find the efficiency of\n" +
+                "different cleaning chemicals and see the best and worst chemical for cleaning");
+            Console.WriteLine("---------------------------------------------------------------------------------------");
             string flag = "";
             while (!flag.Equals("stop"))
             {
@@ -194,7 +208,9 @@ namespace ChemicalApp
                 flag = CheckFlag();
 
             }
+            Console.WriteLine("#########################################################################\n-Summary-\n");
             Console.WriteLine($"Best Chemical was {bestChemName}, with an efficiency of {mostEfficient}\nWorst chemical was {worstChemName}, with an efficiency of {leastEfficient}");
+            Console.WriteLine("#########################################################################");
             Console.ReadLine();
         }
 
