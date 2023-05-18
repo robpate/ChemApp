@@ -61,30 +61,30 @@ namespace ChemicalApp
             for (int i = 0; i < 5; i++)
             {
                 Console.Clear();
-                //Wait 500ms
+                //Wait 250ms
                 Console.WriteLine("Test Commencing\nPlease wait 5 seconds");
                 Thread.Sleep(250);
 
                 Console.Clear();
-                //Wait 500ms
+                //Wait 250ms
                 Console.WriteLine("Test Commencing.\nPlease wait 5 seconds");
                 Thread.Sleep(250);
 
 
                 Console.Clear();
-                //Wait 500ms
+                //Wait 250ms
                 Console.WriteLine("Test Commencing..\nPlease wait 5 seconds");
                 Thread.Sleep(250);
 
 
                 Console.Clear();
-                //Wait 500ms
+                //Wait 250ms
                 Console.WriteLine("Test Commencing...\nPlease wait 5 seconds");
                 Thread.Sleep(250);
             }
-            
-            //Generate average number
 
+            //Generate average number
+            Console.WriteLine("-------------------------------------------------------------------------------------");
             float avgEfficiency = 0;
             for (int i = 0; i <= 5; i++)
             {
@@ -94,8 +94,9 @@ namespace ChemicalApp
                 int numRemoved = germNum - newGermNum;
 
                 //Display new value 
+                
                 Console.WriteLine($"Sample {sampleNum}: {numRemoved} germs were killed leaving {newGermNum} remaining.\n");
-
+                Console.WriteLine("----------------------------------------------------------------------------------------\n");
                 //Determine efficiency of chemical
                 float efficiency = (float)numRemoved / 10;
                 avgEfficiency += efficiency;
@@ -179,13 +180,17 @@ namespace ChemicalApp
 
 
                 }
+                Console.ForegroundColor = ConsoleColor.DarkRed;
                 Console.WriteLine("\nPlease type 'stop' or press <Enter> to continue");
+                Console.ForegroundColor = ConsoleColor.White;
                 Console.WriteLine(userInput1);
             }
             
         }
         static void Main(string[] args)
         {
+            
+            Console.ForegroundColor = ConsoleColor.Blue;
             Console.WriteLine(  @" /$$$$$$  / $$                                /$$$$$$" + "\n" +
                                 @"/ $$__  $$| $$                               /$$__  $$" + "\n" +
                                 @"| $$  \__/| $$$$$$$   /$$$$$$  /$$$$$$/$$$$ | $$  \ $$  /$$$$$$   /$$$$$$ " + "\n" +
@@ -197,20 +202,27 @@ namespace ChemicalApp
                                 @"                                                      | $$      | $$" + "\n" +
                                 @"                                                      | $$      | $$" + "\n" +
                                 @"                                                      |__/      |__/" + "\n");
+
+            
             Console.WriteLine("---------------------------------------------------------------------------------------");
             Console.WriteLine("ChemApp is a program that allows you to find the efficiency of\n" +
-                "different cleaning chemicals and see the best and worst chemical for cleaning");
-            Console.WriteLine("---------------------------------------------------------------------------------------");
+                "different chemicals and see the best and worst chemical for cleaning surfaces");
+            Console.WriteLine("---------------------------------------------------------------------------------------\n\n\n");
+            Console.ForegroundColor = ConsoleColor.White;
             string flag = "";
             while (!flag.Equals("stop"))
             {
                 OneChemical();
                 flag = CheckFlag();
+                Console.Clear();
 
             }
+            Console.ForegroundColor = ConsoleColor.Blue;
             Console.WriteLine("#########################################################################\n-Summary-\n");
             Console.WriteLine($"Best Chemical was {bestChemName}, with an efficiency of {mostEfficient}\nWorst chemical was {worstChemName}, with an efficiency of {leastEfficient}");
             Console.WriteLine("#########################################################################");
+            Console.WriteLine("Press <Enter> to close the program");
+            Console.ForegroundColor = ConsoleColor.White;
             Console.ReadLine();
         }
 
